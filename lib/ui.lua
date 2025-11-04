@@ -894,17 +894,6 @@ local function load_action(ui, row, slot, action, player_vitals)
     local is_disabled = false
     spells = spell_list
     
-    -- Performance optimization: Cache database lookup in action object
-    if not action.db_entry and action.type and action.action then
-        if S{'ma','ja','ws'}:contains(action.type) then
-            action.db_entry = database[action.type][(action.action):lower()]
-        end
-    end
-    
-    for k,v in pairs(not_learned_spells_row_slot) do
-        
-    end
-    
     clear_slot(ui, row, slot)
     ui.hotbars[row].slot_overlay[slot]:path(windower.addon_path .. '/images/icons/custom/blank.png') -- Set overlay to blank
     
@@ -919,7 +908,12 @@ local function load_action(ui, row, slot, action, player_vitals)
             ui.hotbars[row].slot_keys[slot]:show()
         end
 	else
-
+        -- Performance optimization: Cache database lookup in action object
+        if not action.db_entry and action.type and action.action then
+            if S{'ma','ja','ws'}:contains(action.type) then
+                action.db_entry = database[action.type][(action.action):lower()]
+            end
+        end
         
         for k,v in pairs(not_learned_spells_row_slot) do
 
