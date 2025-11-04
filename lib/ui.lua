@@ -486,7 +486,7 @@ end
 
 
 local function disable_slot(ui, hotbar_index, index, action)
-    
+    if action == nil then return end
 
     if ui.disabled_slots.actions[action.action] ~= nil then
         if ui.disabled_slots.actions[action.action] == true then
@@ -506,6 +506,7 @@ local function disable_slot(ui, hotbar_index, index, action)
 end
 
 local function enable_slot(ui, hotbar_index, index, action)
+    if action == nil then return end
 
     if ui.disabled_slots.actions[action.action] ~= nil then
         if ui.disabled_slots.actions[action.action] == false then
@@ -969,7 +970,7 @@ local function load_action(ui, row, slot, action, player_vitals)
                     local cost_text = ensure_slot_cost(ui, row, slot, ui.theme)
                     cost_text:color(ui.theme.mp_cost_color_red, ui.theme.mp_cost_color_green, ui.theme.mp_cost_color_blue)
                     cost_text:text(tostring(skill.mpcost))
-					if player_vitals.mp < tonumber(skill.mpcost) then
+					if player_vitals and player_vitals.mp < tonumber(skill.mpcost) then
 						ui.disabled_slots.no_vitals[action.action] = true
 						is_disabled = true
                     else
@@ -986,7 +987,7 @@ local function load_action(ui, row, slot, action, player_vitals)
 			if ws then
                 setup_slot_icons(ui, '/images/icons/weapons/' .. string.format("%02d", ws.icon) .. '.png', row, slot)
             end
-            if player_vitals.tp < 1000 then
+            if player_vitals and player_vitals.tp < 1000 then
                 ui.disabled_slots.actions[action.action] = true
                 is_disabled = true
             end

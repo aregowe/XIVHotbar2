@@ -175,6 +175,8 @@ end
 
 -- Performance optimization: Build command string during hotbar load and cache it
 function player:build_command_string(action)
+    if action == nil then return "" end
+    
     if action.type == 'ct' then
         local command = '/' .. action.action
         if action.target ~= nil and action.target ~= "" then
