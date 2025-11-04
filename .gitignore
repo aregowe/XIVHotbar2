@@ -1,0 +1,33 @@
+# Optimization and analysis documentation (keep out of repo)
+OPTIMIZATION_REPORT.md
+OPTIMIZATIONS_APPLIED.md
+OPTIMIZATION_*.md
+PERFORMANCE_ANALYSIS_*.md
+OPTIMIZATION_SUMMARY.md
+OPTIMIZATION_IMPLEMENTATION_LOG.md
+OPTIMIZATION_COMPLETE_SUMMARY.md
+DOCS_*.md
+DOCUMENTATION*.md
+
+# Backup files
+*.backup
+*.bak
+*.original
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
