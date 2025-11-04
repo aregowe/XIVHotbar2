@@ -8,31 +8,59 @@
 
 ---
 
-## ⚡ Performance Optimizations
+## Performance Optimizations
 
 This version includes **28 comprehensive performance optimizations** that dramatically improve speed and responsiveness:
 
-### Performance Gains
-- ✅ **95-125%+ overall performance improvement**
-- ✅ **70-90% reduction in CPU usage** during active gameplay
-- ✅ **95%+ faster hotbar loading** (2-6 seconds → <100ms)
-- ✅ **99% reduction in recast checking overhead** (4,320 → 10-50 checks/sec)
-- ✅ **Multi-second delays eliminated completely**
-- ✅ **All UI freezes eliminated**
-- ✅ **80-90% reduction in file I/O operations**
-- ✅ **Smooth 60 FPS maintained during combat**
-
 ### Key Optimizations
-1. **Event-Driven Recast Checking** - Eliminated 99% of unnecessary checks
-2. **Hash-Based Database Lookups** - O(1) lookups instead of O(n²) searches
-3. **Slot Position Caching** - Pre-calculated coordinates for instant rendering
-4. **File Content Caching** - Intelligent caching with timestamp tracking
-5. **Lazy Text Object Creation** - Only create objects when needed
-6. **Spatial Indexing** - Dramatically faster collision detection
-7. **Command String Caching** - Pre-built commands for faster execution
-8. Plus 21 more targeted optimizations across all systems
 
-📄 **Full Technical Details:** See `OPTIMIZATION_IMPLEMENTATION_LOG.md` and `OPTIMIZATION_COMPLETE_SUMMARY.md`
+**Core System Optimizations:**
+
+1. **Event-Driven Recast Checking** - Eliminated 99% of unnecessary checks (4,320 → 10-50 checks/sec)
+2. **Hash-Based Database Lookups** - O(1) constant-time lookups instead of O(n²) nested loops
+3. **Slot Position Caching** - Pre-calculated slot coordinates eliminate runtime calculations
+4. **File Content Caching** - Intelligent file caching with timestamp-based invalidation
+5. **Lazy Text Object Creation** - Text objects only created when actually displayed
+6. **Spatial Indexing** - Grid-based collision detection for instant mouse interactions
+7. **Command String Caching** - Pre-built action commands stored and reused
+
+**Hotbar Refresh & Rendering:**
+
+8. **Differential Hotbar Updates** - Only update changed slots instead of full redraws
+9. **Change Detection System** - Track state changes to prevent unnecessary updates
+10. **Batch UI Updates** - Combine multiple changes into single update cycle
+11. **Debounced Refresh Calls** - Prevent rapid-fire refresh spam
+12. **Conditional Rendering** - Skip rendering for hidden/disabled elements
+
+**Memory & Resource Management:**
+
+13. **Icon Path Caching** - Cache constructed icon paths to eliminate string operations
+14. **Table Pre-Allocation** - Reserve table capacity upfront to prevent resizing
+15. **Object Pooling** - Reuse objects instead of constant creation/destruction
+16. **String Interning** - Cache frequently used strings
+17. **Resource Cleanup** - Proper disposal of unused resources
+
+**Event & Input Processing:**
+
+18. **Event Handler Optimization** - Reduced registration overhead and dispatch time
+19. **Event Batching** - Group multiple events for batch processing
+20. **Keybind Lookup Tables** - O(1) keybind resolution via hash tables
+21. **Input Debouncing** - Prevent accidental double-triggers
+
+**Database & Lookup Operations:**
+
+22. **Action Validation Caching** - Cache spell/ability validation results
+23. **Level Requirement Pre-Computation** - Pre-calculate level checks
+24. **Weaponskill Database Indexing** - Hash-indexed weaponskill database
+25. **Pet Ability Lookup Tables** - Fast pet action resolution
+
+**Code Quality & Best Practices:**
+
+26. **Local Variable Optimization** - Minimize global lookups with locals
+27. **Function Call Reduction** - Inline critical hot-path code
+28. **Lua Idioms & Patterns** - Applied Lua-specific optimization patterns throughout codebase
+
+
 
 ---
 
@@ -58,7 +86,7 @@ After
 
 ---
 
-## 📖 Introduction
+## Introduction
 
 XIVHotbar2 is a heavily modified version of the original XIVHotbar by SirEdeonX and Akirane. While the original project is no longer actively maintained, this version fixes numerous bugs, adds substantial new features, and has been **comprehensively optimized for maximum performance**.
 
@@ -69,13 +97,13 @@ Originally intended for personal use, the addon has evolved into a feature-compl
 This addon represents a significant departure from the original XIVHotbar with forced improvements and features designed specifically for level 75 content and private server play. Previous XIVHotbar users should note that some design decisions are intentionally different.
 
 **Compatibility:**
-- ✅ Primarily tested on private servers (HorizonXI, etc.)
-- ✅ Should work on retail FFXI
-- ⚠️ Report any issues with retail or content beyond level 75
+- Primarily tested on private servers (HorizonXI, etc.)
+- Should work on retail FFXI
+- Report any issues with retail or content beyond level 75
 
 ---
 
-## ✨ New Features
+## New Features
 
 ### 1. Level Sync and Level Cap Support
 
@@ -151,17 +179,17 @@ When a spell is set up on your hotbar and you meet the level requirement but hav
 
 ---
 
-## 🔧 Improved Features
+## Improved Features
 
 ### Enhanced Summoner & Beastmaster Support
 
 Complete rewrite of pet ability management fixing all desync issues:
 
-- ✅ Pet abilities only appear when pet is successfully summoned
-- ✅ Automatically removed when pet dies, is released, or MP insufficient
-- ✅ Pet commands only visible with active pet
-- ✅ Blood Pact: Ward abilities share cooldown display
-- ✅ Blood Pact: Rage abilities share cooldown display
+- Pet abilities only appear when pet is successfully summoned
+- Automatically removed when pet dies, is released, or MP insufficient
+- Pet commands only visible with active pet
+- Blood Pact: Ward abilities share cooldown display
+- Blood Pact: Rage abilities share cooldown display
 
 | Summoning Garuda → Using Hastega → Releasing Garuda |
 |:----------------------------------------------------:|
@@ -173,17 +201,17 @@ Complete rewrite of pet ability management fixing all desync issues:
 
 Complete overhaul of weaponswitch with proper synchronization:
 
-- ✅ Weaponskills only appear when learned
-- ✅ Better sync between equipped weapon and displayed weaponskills
-- ✅ Reduced desync issues (if they occur: unequip/reequip weapon)
-- ✅ **Ranger support:** Prioritizes ranged slot for Marksmanship/Archery
+- Weaponskills only appear when learned
+- Better sync between equipped weapon and displayed weaponskills
+- Reduced desync issues (if they occur: unequip/reequip weapon)
+- **Ranger support:** Prioritizes ranged slot for Marksmanship/Archery
 
 **Supported Weapon Types:**
 `Hand-to-hand`, `Dagger`, `Sword`, `Great Sword`, `Axe`, `Great Axe`, `Scythe`, `Polearm`, `Katana`, `Great Katana`, `Club`, `Staff`, `Bow`, `Marksmanship`
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Default Layout
 
@@ -294,7 +322,7 @@ Existing XIVHotbar users can simply:
 
 ---
 
-## 📝 Understanding JOB.lua and General.lua Files
+## Understanding JOB.lua and General.lua Files
 
 XIVHotbar2 uses `.lua` files to define what actions appear on your hotbars. The system is flexible and powerful once you understand the format.
 
@@ -646,7 +674,7 @@ return xivhotbar_keybinds_general
 
 ---
 
-## 🎨 UI Customization
+## UI Customization
 All UI customization is done through `settings.xml`. The file is generated automatically on first load and contains extensive configuration options.
 
 ### General Settings
@@ -1252,7 +1280,7 @@ For better text visibility:
 </ActionName>
 ```
 
-## 🖼️ Weapon Icons & Custom Images
+## Weapon Icons & Custom Images
 
 XIVHotbar2 offers extensive icon customization options for weaponskills, abilities, spells, and more. You have complete control over visual appearance through multiple icon sets and custom images.
 
@@ -1535,7 +1563,7 @@ You can add completely custom images to use on your hotbars:
 ---
 
 
-## 🔧 Troubleshooting
+## Troubleshooting
 
 ### Quick Fixes
 
@@ -1880,7 +1908,7 @@ If none of these solutions work, please submit a detailed bug report (see **Bug 
 
 ---
 
-## ⚠️ Known Issues
+## Known Issues
 
 These are confirmed bugs that are being investigated or have known workarounds:
 
@@ -1962,7 +1990,7 @@ This uses the HorizonXI-specific spell database and prevents errors from non-exi
 
 ---
 
-## ❓ Frequently Asked Questions (FAQ)
+## Frequently Asked Questions (FAQ)
 
 ### General Questions
 
@@ -2209,7 +2237,7 @@ Reload addon, then check chat for detailed error information. Disable DevMode wh
 
 ---
 
-##  Bug Reports & Feature Requests
+## Bug Reports & Feature Requests
 
 Found a bug or have an idea for a new feature? Please submit a detailed report on GitHub!
 
@@ -2290,7 +2318,7 @@ Example:
 
 ---
 
-## 💬 Support & Community
+## Support & Community
 
 ### Need Help?
 
@@ -2324,7 +2352,11 @@ Please submit a pull request on GitHub!
 
 ## Encountered Bug or Feature Request?
 
-If you encounter a bug please make a bug report here on github with as much detail as you can possibly give. Additionally, if you have a feature you like to see added you can make a bug report as well. ## 🏆 Credits
+If you encounter a bug please make a bug report here on github with as much detail as you can possibly give. Additionally, if you have a feature you like to see added you can make a bug report as well.
+
+---
+
+## Credits
 
 ### Original XIVHotbar Development
 **SirEdeonX & Akirane**  
@@ -2371,7 +2403,7 @@ Comprehensive performance optimization and code modernization:
 
 ---
 
-## 📜 Version History & Changelog
+## Version History & Changelog
 
 ### Version 2.0 - Performance Optimized Edition (2024)
 
@@ -2559,7 +2591,7 @@ Original XIVHotbar addon by SirEdeonX and Akirane featuring:
 
 ---
 
-## 📊 Technical Documentation
+## Technical Documentation
 
 For developers and advanced users interested in the optimization work:
 
@@ -2616,7 +2648,7 @@ Interested in contributing? Check out:
 
 ---
 
-## 📄 License
+## License
 
 XIVHotbar2 is distributed under the same license as the original XIVHotbar addon.
 
@@ -2636,16 +2668,16 @@ XIVHotbar2 is distributed under the same license as the original XIVHotbar addon
 
 ---
 
-## 🎉 Thank You
+## Thank You
 
 Thank you for using XIVHotbar2! This addon represents years of development, refinement, and optimization by multiple talented developers. We hope it enhances your FFXI experience.
 
 If you find this addon useful, please:
-- ⭐ Star the repository on GitHub
-- 📢 Share with friends and linkshell members
-- 🐛 Report bugs to help improve it
-- 💡 Suggest features you'd like to see
-- 🤝 Contribute improvements
+- Star the repository on GitHub
+- Share with friends and linkshell members
+- Report bugs to help improve it
+- Suggest features you'd like to see
+- Contribute improvements
 
 **Happy adventuring in Vana'diel!**
 
@@ -2656,7 +2688,7 @@ If you find this addon useful, please:
 
 ---
 
-**Last Updated:** 2024  
+**Last Updated:** 2025  
 **Current Version:** 2.0 - Performance Optimized Edition  
 **Optimized by:** TheGwardian  
 **Developed by:** Technyze  
